@@ -19,6 +19,7 @@ dependencies {
     implementation group: 'pl.project13.maven', name: 'git-commit-id-plugin', version: '4.9.10'
     implementation 'io.vertx:vertx-health-check:4.4.4'
     implementation 'io.vertx:vertx-web-client:4.4.4'
+    implementation 'io.vertx:vertx-auth-jwt:4.4.4'
     implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.29'
 }
 
