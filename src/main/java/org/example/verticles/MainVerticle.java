@@ -42,6 +42,7 @@ public class MainVerticle extends AbstractVerticle {
         router.get("/getUser").handler(userHandler::getUser);
         router.get("/test").handler(userHandler::test);
         router.delete("/delete/:userId").handler(userHandler::delete);
+        router.delete("/deleteAll").handler(userHandler::deleteAll);
         router.route(HttpMethod.GET,"/getUser/:userId").handler(userHandler::getUser);
         router.route(HttpMethod.POST,"/addUser").handler(BodyHandler.create()).handler(userHandler::addUser);
 

@@ -166,4 +166,18 @@ public class UserHandler {
         }
         return false;
     }
+
+    public void deleteAll(RoutingContext context) {
+        Future<MongoClientDeleteResult> delete = userService.delete(Constants.USER_COLLECTION, new JsonObject());
+        delete.onComplete(event -> {
+            if(event.succeeded()){
+                MongoClientDeleteResult result = event.result();
+                JsonObject json = result.toJson();
+                json.put("deleted", result.getRemovedCount());
+                context.response().end(json.encodePrettily());
+            }else {
+                context.response().end("Faild to delete user due to >> " + event.cause().toString());
+            }
+        });
+    }
 }
