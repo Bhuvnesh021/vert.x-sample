@@ -27,7 +27,7 @@ public class WorkerVerticle extends AbstractVerticle {
         EventBus eventBus = vertx.eventBus();
 
         eventBus.consumer("worker.thread", event -> {
-            System.out.println("it was received message : "+ event.body());
+            logger.info("it was received message : "+ event.body());
            event.reply("message reached!");
         });
         eventBus.consumer(Constants.MESSAGE_PATH, event -> {
@@ -52,7 +52,7 @@ public class WorkerVerticle extends AbstractVerticle {
             accept.onComplete(event1 -> {
                 if(event1.succeeded()){
                     JsonObject body = event1.result().body();
-                    System.out.println(body);
+                    logger.info(body.toString());
 
                 }else {
                     event1.cause().printStackTrace();

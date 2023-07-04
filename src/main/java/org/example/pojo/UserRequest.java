@@ -2,7 +2,7 @@ package org.example.pojo;
 
 public class UserRequest {
 
-
+    private String _id;
     private int userId;
     private String userName;
 
@@ -14,10 +14,19 @@ public class UserRequest {
     @Override
     public String toString() {
         return "UserRequest{" +
-                "userId=" + userId +
+                "_id='" + _id + '\'' +
+                ", userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 '}';
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public UserRequest(int userId, String userName, String userPassword) {

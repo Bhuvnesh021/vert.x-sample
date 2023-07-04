@@ -41,14 +41,15 @@ public class MainVerticle extends AbstractVerticle {
         router.route(HttpMethod.PUT, "/updateUser").handler(BodyHandler.create()).handler(userHandler::updateUser);
         router.get("/getUser").handler(userHandler::getUser);
         router.get("/test").handler(userHandler::test);
+        router.delete("/delete/:userId").handler(userHandler::delete);
         router.route(HttpMethod.GET,"/getUser/:userId").handler(userHandler::getUser);
         router.route(HttpMethod.POST,"/addUser").handler(BodyHandler.create()).handler(userHandler::addUser);
 
         httpServer.requestHandler(router).listen(8080, event -> {
             if(event.succeeded()){
-                System.out.println("server started!!");
+                logger.info("server started!!");
             }else {
-                System.out.println("server failing to start!!");
+                logger.info("server failing to start!!");
             }
         });
 
@@ -64,7 +65,7 @@ public class MainVerticle extends AbstractVerticle {
         jsonArray.add(Constants.SAMPLE_GEO_SPATIAL);
         jsonObject.put(Constants.DB_NAMES, jsonArray);
         vertx.eventBus().request(Constants.OBJECT_INIT, jsonObject.encode(), event -> {
-            System.out.println(event.result().body());
+            logger.info(event.result().body().toString());
         } );
     }
 
