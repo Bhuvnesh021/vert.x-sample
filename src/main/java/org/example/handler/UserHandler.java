@@ -63,6 +63,7 @@ public class UserHandler {
     }
 
     public void addUser(RoutingContext context) {
+        logger.info("Entered in addUser");
         UserRequest userRequest = getUserRequestObject(context.body());
         logger.info(userRequest.toString());
         validateUserRequest(Constants.USER_COLLECTION, userRequest, checkUserExistOrNot, context);
